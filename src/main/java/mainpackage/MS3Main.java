@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class MS3Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		String csvFile = "ms3Interview.csv";
 		BufferedReader br = null;
@@ -26,7 +25,7 @@ public class MS3Main {
 		int numberOfFailedRecords = 0;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
+			//conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
 			
 			
 			FileWriter myWriter = new FileWriter("ms3interview-bad.csv");
@@ -34,10 +33,9 @@ public class MS3Main {
 
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine();
-			PreparedStatement stmt = conn
-					.prepareStatement("insert into exampleTable (" + line + ") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+//			PreparedStatement stmt = conn
+//					.prepareStatement("insert into exampleTable (" + line + ") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			int numColumns = line.split(csvSplitBy).length;
-			// System.out.println(numColumns);
 			while ((line = br.readLine()) != null) {
 				numberOfRecords++;
 				String[] values = line.split(csvSplitBy);
@@ -59,8 +57,8 @@ public class MS3Main {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
 		} finally {
 			if (br != null) {
 				try {
