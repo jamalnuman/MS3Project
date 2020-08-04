@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MS3Main {
 
@@ -25,16 +26,20 @@ public class MS3Main {
 		int numberOfFailedRecords = 0;
 
 		try {
-			//conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
-			
-			
+			conn = DriverManager.getConnection("jdbc:sqlite:/Users/jamalnuman/Desktop/sqlite" + dbName);
+
 			FileWriter myWriter = new FileWriter("ms3interview-bad.csv");
 			FileWriter myLog = new FileWriter("ms3interview.log");
 
 			br = new BufferedReader(new FileReader(csvFile));
 			line = br.readLine();
-//			PreparedStatement stmt = conn
-//					.prepareStatement("insert into exampleTable (" + line + ") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+			String sqlstatement = ("CREATE TABLE IF NOT EXISTS exampleTable (\n" + "firstName varchar(255), \n"
+					+ "lastName varchar(255), \n" + "email TEXT, \n" + "gender varchar(50), \n" + "miss1 TEXT, \n"
+					+ "miss2 TEXT, \n" + "price TEXT, \n" + "bool1 TEXT, \n" + "bool2 TEXT, \n" + "city TEXT \n"
+					+ ");");
+			Statement stmt = conn.createStatement();
+			stmt.execute(sqlstatement);
 			int numColumns = line.split(csvSplitBy).length;
 			while ((line = br.readLine()) != null) {
 				numberOfRecords++;
@@ -43,9 +48,22 @@ public class MS3Main {
 					myWriter.write(line + '\n');
 					numberOfFailedRecords++;
 				} else {
-					numberOfSuccessfulRecords ++;
+					String insertSQL = "INSERT INTO exampleTable (firstName, lastName, email, gender, miss1, "
+							+ "miss2, price, bool1, bool2, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					PreparedStatement preparedStatement = conn.prepareStatement(insertSQL);
+					preparedStatement.setString(1, values[0]);
+					preparedStatement.setString(2, values[1]);
+					preparedStatement.setString(3, values[2]);
+					preparedStatement.setString(4, values[3]);
+					preparedStatement.setString(5, values[4]);
+					preparedStatement.setString(6, values[5]);
+					preparedStatement.setString(7, values[6]);
+					preparedStatement.setString(8, values[7]);
+					preparedStatement.setString(9, values[8]);
+					preparedStatement.setString(10, values[9]);
+					preparedStatement.executeUpdate();
+					numberOfSuccessfulRecords++;
 				}
-				
 
 			}
 			myWriter.close();
@@ -57,13 +75,20 @@ public class MS3Main {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
+					if (conn != null) {
+						conn.close();
+					}
+
 				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
