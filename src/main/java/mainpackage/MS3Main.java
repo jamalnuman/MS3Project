@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Statement; 
 
 public class MS3Main {
 
@@ -44,6 +44,7 @@ public class MS3Main {
 			while ((line = br.readLine()) != null) {
 				numberOfRecords++;
 				String[] values = line.split(csvSplitBy);
+				System.out.println("hello");
 				if (values.length < numColumns) {
 					myWriter.write(line + '\n');
 					numberOfFailedRecords++;
@@ -84,11 +85,9 @@ public class MS3Main {
 					if (conn != null) {
 						conn.close();
 					}
-
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
