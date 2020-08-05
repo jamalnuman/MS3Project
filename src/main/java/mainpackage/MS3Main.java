@@ -35,8 +35,8 @@ public class MS3Main {
 			line = br.readLine();
 
 			String sqlstatement = ("CREATE TABLE IF NOT EXISTS exampleTable (\n" + "firstName varchar(255), \n"
-					+ "lastName varchar(255), \n" + "email TEXT, \n" + "gender varchar(50), \n" + "miss1 TEXT, \n"
-					+ "miss2 TEXT, \n" + "price TEXT, \n" + "bool1 TEXT, \n" + "bool2 TEXT, \n" + "city TEXT \n"
+					+ "lastName varchar(255), \n" + "email varchar(150), \n" + "gender varchar(50), \n" + "miss1 TEXT, \n"
+					+ "miss2 TEXT, \n" + "price TEXT, \n" + "bool1 TEXT, \n" + "bool2 TEXT, \n" + "city varchar(100) \n"
 					+ ");");
 			Statement stmt = conn.createStatement();
 			stmt.execute(sqlstatement);
