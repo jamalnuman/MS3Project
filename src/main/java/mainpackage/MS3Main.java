@@ -44,7 +44,6 @@ public class MS3Main {
 			while ((line = br.readLine()) != null) {
 				numberOfRecords++;
 				String[] values = line.split(csvSplitBy);
-				System.out.println("hello");
 				if (values.length < numColumns) {
 					myWriter.write(line + '\n');
 					numberOfFailedRecords++;
