@@ -14,7 +14,7 @@
 >8. Create a Statement object, which will help with executing an SQL command. The Statement object should equal the path to the database along with createStatement(); refer to line 41 and line 42 in the application.
 >9. Now use the execute(ENTER THE STRING VARIABLE THAT HOLDS THE SQL COMMAND) method on the Statement object, which was created on line 8. 
 >10. Write logic that will help keep track of the total number of records, successful records and failed records.
->11. Use the PreparedStatement object which hold a list of pre-compiled SQL commands.   
+>11. Use the PreparedStatement object which holds a list of pre-compiled SQL commands.   
 >12. Use the .setString() method to create a list of commands in the PreparedStatement object. These commands will help insert values into the table. Execute the list of commands with executeUpdate() method. 
 >13. Make sure to close any open FileWriter streams. 
 
