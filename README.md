@@ -8,9 +8,9 @@
 >2. Create a String variable that holds the csv file to be parsed. 
 >3. Create a String variable to hold the name of the database. 
 >4. Use DriverManager.getConnection(PATH TO YOUR DB) and save this to a variable.
->5. Use the FileWriter class to create a file and later have the ability to write to your log file and the csv file that contains the bad records. 
+>5. Use the FileWriter class to create a file. This will provide the ability to write to your log file and csv file that contains the bad records. 
 >6. Use the BufferedReader along with FileReader to parse the original csv file, refer to step 2. 
->7. Create a String variable to hold the SQL command for creating a table. 
+>7. Create a String variable to hold the SQL command for creating a table. Make sure to include data types for each column, as well as, any constraints. 
 >8. Create a Statement object, which will help with executing an SQL command. The Statement object should equal the path to the database along with createStatement(); refer to line 41 and line 42 in the application.
 >9. Now use the execute(ENTER THE STRING VARIABLE THAT HOLDS THE SQL COMMAND) method on the Statement object, which was created on line 8. 
 >10. Write logic that will help keep track of the total number of records, successful records and failed records.
